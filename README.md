@@ -1,4 +1,4 @@
-# [React Color](http://casesandberg.github.io/react-color/)
+# Better React Color
 
 [![Npm Version][npm-version-image]][npm-version-url]
 [![Build Status][travis-svg]][travis-url]
@@ -9,23 +9,23 @@
 
 * **Make Your Own** - Use the building block components to make your own
 
-## Demo
-
-![Demo](https://media.giphy.com/media/26FfggT53qE304CwE/giphy.gif)
-
-[**Live Demo**](http://casesandberg.github.io/react-color/)
-
 ## Installation & Usage
 
+Using npm
+
 ```sh
-npm install react-color --save
+npm install @ritlabs/better-react-color --save
+```
+or  
+```sh
+yarn add @ritlabs/better-react-color
 ```
 
 ### Include the Component
 
 ```js
 import React from 'react'
-import { SketchPicker } from 'react-color'
+import { SketchPicker } from '@ritlabs/better-react-color'
 
 class Component extends React.Component {
 

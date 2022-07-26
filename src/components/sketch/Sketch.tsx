@@ -6,8 +6,32 @@ import merge from 'lodash/merge'
 import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '../common'
 import SketchFields from './SketchFields'
 import SketchPresetColors from './SketchPresetColors'
+import { IColor } from '../../helpers/color'
+import tinycolor from 'tinycolor2'
 
-export const Sketch = ({ width, rgb, hex, hsv, hsl, onChange, onSwatchHover,
+interface ISkecthTheme {
+  picker: React.CSSProperties
+  inputs: React.CSSProperties
+  labels: React.CSSProperties,
+}
+
+interface SketchExternalProps {
+  color: string | tinycolor.ColorFormats.RGBA | tinycolor.ColorFormats.HSLA
+  width: number
+  disableAlpha: boolean
+  presetColors: string[]
+  theme: ISkecthTheme
+  onChange: (colors: IColor, event: any) => void
+  className: string
+}
+
+interface SketchFullProps extends SketchExternalProps, IColor {
+  onSwatchHover: any
+  renderers: any
+  styles: any
+}
+
+export const Sketch: React.FunctionComponent<SketchFullProps> = ({ width, rgb, hex, hsv, hsl, onChange, onSwatchHover,
   disableAlpha, presetColors, renderers, styles: passedStyles = {}, className = '' }) => {
   const styles = reactCSS(merge({
     'default': {
@@ -15,7 +39,7 @@ export const Sketch = ({ width, rgb, hex, hsv, hsl, onChange, onSwatchHover,
         width,
         padding: '10px 10px 0',
         boxSizing: 'initial',
-        background: '#fff',
+        background: '#202020',
         borderRadius: '4px',
         boxShadow: '0 0 0 1px rgba(0,0,0,.15), 0 8px 16px rgba(0,0,0,.15)',
       },
@@ -136,11 +160,11 @@ export const Sketch = ({ width, rgb, hex, hsv, hsl, onChange, onSwatchHover,
   )
 }
 
-Sketch.propTypes = {
-  disableAlpha: PropTypes.bool,
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  styles: PropTypes.object,
-}
+// Sketch.propTypes = {
+//   disableAlpha: PropTypes.bool,
+//   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+//   styles: PropTypes.object,
+// }
 
 Sketch.defaultProps = {
   disableAlpha: false,
@@ -151,4 +175,4 @@ Sketch.defaultProps = {
     '#4A4A4A', '#9B9B9B', '#FFFFFF'],
 }
 
-export default ColorWrap(Sketch)
+export default ColorWrap(Sketch as React.FunctionComponent<SketchExternalProps>)

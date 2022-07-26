@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { renderWithKnobs } from '../../../.storybook/report'
 import SyncColorField from '../../../.storybook/SyncColorField'
 
-import Sketch from './Sketch'
+import Sketch from './Sketch.tsx'
 
 storiesOf('Pickers', module)
   .add('SketchPicker', () => (

@@ -1,6 +1,10 @@
 const path = require('path')
 const webpack = require('webpack')
 
+const babelLoader = {
+  loader: 'babel-loader'
+}
+
 module.exports = {
   entry: ['./docs/index.js'],
   output: {
@@ -8,22 +12,31 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: 'docs/build/',
   },
+  devTool: "source-map",
   module: {
     loaders: [
       {
+        test: /\.tsx?$/,
+        exclude: [/node_modules/, /modules/],
+        use: [babelLoader, {loader: 'ts-loader'}],
+      },
+      {
         test: /\.js$/,
         include: /react-context/,
-        loaders: ['babel-loader'],
+        use: babelLoader,
       },
       {
         test: /\.js$/,
         exclude: [/node_modules/, /modules/],
-        loaders: ['babel-loader'],
-      }, {
-        test: /\.jsx$/,
-        exclude: [/node_modules/, /modules/],
-        loaders: ['jsx-loader', 'babel-loader'],
-      }, {
+        use: [babelLoader],
+        enforce: 'pre',
+      },
+      // {
+      //   test: /\.jsx$/,
+      //   exclude: [/node_modules/, /modules/],
+      //   loaders: ['jsx-loader', 'babel-loader'],
+      // },
+      {
         test: /\.css$/,
         loaders: ['style-loader', 'css-loader'],
       }, {
@@ -33,7 +46,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.ts', '.tsx', '.js', '.jsx'],
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin({ quiet: true }),

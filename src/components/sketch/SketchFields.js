@@ -27,7 +27,11 @@ export const SketchFields = ({ onChange, rgb, hsl, hex, disableAlpha }) => {
       input: {
         width: '80%',
         padding: '4px 10% 3px',
-        border: 'none',
+        border: '1px solid #000',
+        borderRadius: '6px',
+        backgroundColor: '#121212',
+        // borderColor: '#1d1d1d',
+        color: 'white',
         boxShadow: 'inset 0 0 0 1px #ccc',
         fontSize: '11px',
       },
@@ -39,6 +43,8 @@ export const SketchFields = ({ onChange, rgb, hsl, hex, disableAlpha }) => {
         paddingTop: '3px',
         paddingBottom: '4px',
         textTransform: 'capitalize',
+        color: '#e0e0e0',
+        fontFamily: 'Roboto'
       },
     },
     'disableAlpha': {

@@ -1,6 +1,15 @@
 import each from 'lodash/each'
 import tinycolor from 'tinycolor2'
 
+export interface IColor {
+  hsl?: tinycolor.ColorFormats.HSLA,
+  hsv?: tinycolor.ColorFormats.HSVA
+  rgb?: tinycolor.ColorFormats.RGBA
+  hex?: string
+  oldHue?: any
+  source?: any
+}
+
 export const simpleCheckForValidColor = (data) => {
   const keysToCheck = ['r', 'g', 'b', 'a', 'h', 's', 'l', 'v']
   let checked = 0
@@ -22,7 +31,7 @@ export const simpleCheckForValidColor = (data) => {
   return (checked === passed) ? data : false
 }
 
-export const toState = (data, oldHue) => {
+export const toState = (data, oldHue?): IColor => {
   const color = data.hex ? tinycolor(data.hex) : tinycolor(data)
   const hsl = color.toHsl()
   const hsv = color.toHsv()
@@ -74,5 +83,5 @@ export const red = {
 
 export const isvalidColorString = (string, type) => {
   const stringWithoutDegree = string.replace('°', '')
-  return tinycolor(`${ type } (${ stringWithoutDegree })`)._ok
+  return (tinycolor(`${ type } (${ stringWithoutDegree })`) as any)._ok
 }

@@ -7,8 +7,21 @@ import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '../common'
 import ChromeFields from './ChromeFields'
 import ChromePointer from './ChromePointer'
 import ChromePointerCircle from './ChromePointerCircle'
+import { IColor } from '../../helpers/color'
 
-export const Chrome = ({ width, onChange, disableAlpha, rgb, hsl, hsv, hex, renderers,
+export type ChromePickerView = 'rgb' | 'hsl' | 'hex'
+
+interface ChromePickerProps extends IColor {
+  width?: number | string
+  onChange: (...props: any[]) => void
+  disableAlpha?: boolean
+  renderers?: any
+  styles?: any
+  className?: string
+  defaultView: ChromePickerView
+}
+
+export const Chrome: React.FunctionComponent<ChromePickerProps> = ({ width, onChange, disableAlpha, rgb, hsl, hsv, hex, renderers,
   styles: passedStyles = {}, className = '', defaultView }) => {
   const styles = reactCSS(merge({
     'default': {

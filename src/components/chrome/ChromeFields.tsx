@@ -7,19 +7,35 @@ import isUndefined from 'lodash/isUndefined'
 
 import { EditableInput } from '../common'
 import UnfoldMoreHorizontalIcon from '@icons/material/UnfoldMoreHorizontalIcon'
+import { ChromePickerView } from './Chrome'
 
-export class ChromeFields extends React.Component {
-  constructor(props) {
-    super()
+interface ChormeFieldsProps extends color.IColor {
+  onChange?: (...props: any[]) => void
+  disableAlpha?: boolean
+  view?: ChromePickerView
+}
 
-    if (props.hsl.a !== 1 && props.view === "hex") {
-      this.state = {
-        view: "rgb"
-      };
-    } else {
-      this.state = {
-        view: props.view,
-      }
+interface ChromeFielsState {
+  view: ChromePickerView
+}
+ 
+export class ChromeFields extends React.Component<ChormeFieldsProps, ChromeFielsState> {
+  icon: any
+  constructor(props: ChormeFieldsProps = {view: 'rgb'}) {
+    super(props)
+
+    // if () {
+    //   this.state = {
+    //     view: "rgb"
+    //   };
+    // } else {
+    //   this.state = {
+    //     view: props.view,
+    //   }
+    // }
+
+    this.state = {
+      view: props.hsl.a !== 1 && props.view === "hex" ? "rgb" : props.view
     }
   }
 
@@ -278,8 +294,8 @@ export class ChromeFields extends React.Component {
   }
 }
 
-ChromeFields.defaultProps = {
-  view: "hex",
-}
+// ChromeFields.defaultProps = {
+//   view: "hex",
+// }
 
 export default ChromeFields

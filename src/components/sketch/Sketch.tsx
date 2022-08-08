@@ -9,7 +9,7 @@ import SketchPresetColors from './SketchPresetColors'
 import { IColor } from '../../helpers/color'
 import tinycolor from 'tinycolor2'
 
-interface ISkecthTheme {
+export interface ISkecthTheme {
   picker: React.CSSProperties
   inputs: React.CSSProperties
   labels: React.CSSProperties,
@@ -32,16 +32,17 @@ interface SketchFullProps extends SketchExternalProps, IColor {
 }
 
 export const Sketch: React.FunctionComponent<SketchFullProps> = ({ width, rgb, hex, hsv, hsl, onChange, onSwatchHover,
-  disableAlpha, presetColors, renderers, styles: passedStyles = {}, className = '' }) => {
+  disableAlpha, presetColors, renderers, theme, styles: passedStyles = {}, className = '' }) => {
   const styles = reactCSS(merge({
     'default': {
       picker: {
         width,
         padding: '10px 10px 0',
         boxSizing: 'initial',
-        background: '#202020',
+        background: '#fff',
         borderRadius: '4px',
         boxShadow: '0 0 0 1px rgba(0,0,0,.15), 0 8px 16px rgba(0,0,0,.15)',
+        ...theme?.picker,
       },
       saturation: {
         width: '100%',
@@ -150,6 +151,7 @@ export const Sketch: React.FunctionComponent<SketchFullProps> = ({ width, rgb, h
         hex={ hex }
         onChange={ onChange }
         disableAlpha={ disableAlpha }
+        theme={theme}
       />
       <SketchPresetColors
         colors={ presetColors }

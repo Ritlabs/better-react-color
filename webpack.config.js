@@ -29,7 +29,7 @@ module.exports = {
         test: /\.js$/,
         exclude: [/node_modules/, /modules/],
         use: [babelLoader],
-        enforce: 'pre',
+        // enforce: 'pre',
       },
       // {
       //   test: /\.jsx$/,

@@ -6,7 +6,7 @@ import * as color from '../../helpers/color'
 
 import { EditableInput } from '../common'
 
-export const SketchFields = ({ onChange, rgb, hsl, hex, disableAlpha }) => {
+export const SketchFields = ({ onChange, rgb, hsl, hex, disableAlpha, theme = {} }) => {
   const styles = reactCSS({
     'default': {
       fields: {
@@ -30,6 +30,7 @@ export const SketchFields = ({ onChange, rgb, hsl, hex, disableAlpha }) => {
         border: 'none',
         boxShadow: 'inset 0 0 0 1px #ccc',
         fontSize: '11px',
+        ...theme.inputs || {}
       },
       label: {
         display: 'block',
@@ -39,6 +40,7 @@ export const SketchFields = ({ onChange, rgb, hsl, hex, disableAlpha }) => {
         paddingTop: '3px',
         paddingBottom: '4px',
         textTransform: 'capitalize',
+        ...theme.labels || {}
       },
     },
     'disableAlpha': {

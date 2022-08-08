@@ -4,7 +4,7 @@ import reactCSS from 'reactcss'
 
 import { Swatch } from '../common'
 
-export const SketchPresetColors = ({ colors, onClick = () => {}, onSwatchHover }) => {
+export const SketchPresetColors = ({ colors, onClick = () => {}, onSwatchHover, theme = {} }) => {
   const styles = reactCSS({
     'default': {
       colors: {
@@ -14,6 +14,7 @@ export const SketchPresetColors = ({ colors, onClick = () => {}, onSwatchHover }
         display: 'flex',
         flexWrap: 'wrap',
         position: 'relative',
+        ...theme.colors || {}
       },
       swatchWrap: {
         width: '16px',
@@ -74,6 +75,7 @@ SketchPresetColors.propTypes = {
       title: PropTypes.string,
     })],
   )).isRequired,
+  theme: PropTypes.object,
 }
 
 export default SketchPresetColors

@@ -8,7 +8,7 @@ import SketchFields from './SketchFields'
 import SketchPresetColors from './SketchPresetColors'
 
 export const Sketch = ({ width, rgb, hex, hsv, hsl, onChange, onSwatchHover,
-  disableAlpha, presetColors, renderers, styles: passedStyles = {}, className = '' }) => {
+  disableAlpha, presetColors, renderers, styles: passedStyles = {}, className = '', theme = {} }) => {
   const styles = reactCSS(merge({
     'default': {
       picker: {
@@ -18,6 +18,7 @@ export const Sketch = ({ width, rgb, hex, hsv, hsl, onChange, onSwatchHover,
         background: '#fff',
         borderRadius: '4px',
         boxShadow: '0 0 0 1px rgba(0,0,0,.15), 0 8px 16px rgba(0,0,0,.15)',
+        ...theme.picker || {}
       },
       saturation: {
         width: '100%',
@@ -126,11 +127,13 @@ export const Sketch = ({ width, rgb, hex, hsv, hsl, onChange, onSwatchHover,
         hex={ hex }
         onChange={ onChange }
         disableAlpha={ disableAlpha }
+        theme={theme}
       />
       <SketchPresetColors
         colors={ presetColors }
         onClick={ onChange }
         onSwatchHover={ onSwatchHover }
+        theme={theme}
       />
     </div>
   )
@@ -140,6 +143,7 @@ Sketch.propTypes = {
   disableAlpha: PropTypes.bool,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   styles: PropTypes.object,
+  theme: PropTypes.object,
 }
 
 Sketch.defaultProps = {
@@ -149,6 +153,7 @@ Sketch.defaultProps = {
   presetColors: ['#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321', '#417505',
     '#BD10E0', '#9013FE', '#4A90E2', '#50E3C2', '#B8E986', '#000000',
     '#4A4A4A', '#9B9B9B', '#FFFFFF'],
+  theme: PropTypes.object,
 }
 
 export default ColorWrap(Sketch)

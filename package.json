@@ -1,17 +1,16 @@
 {
-  "name": "react-color",
-  "version": "2.19.3",
+  "name": "@ritlabs/better-react-color",
+  "version": "2.19.5",
   "description": "A Collection of Color Pickers from Sketch, Photoshop, Chrome & more",
   "main": "lib/index.js",
   "module": "es/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/casesandberg/react-color.git"
+    "url": "git+https://github.com/Ritlabs/better-react-color.git"
   },
-  "author": "case <case@casesandberg.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/casesandberg/react-color/issues"
+    "url": "https://github.com/Ritlabs/better-react-color/issues"
   },
   "scripts": {
     "test": "npm run jest && npm run eslint",
@@ -30,7 +29,7 @@
     "chromatic": "chromatic --project-token=9z2kaxsuz"
   },
   "sideEffects": false,
-  "homepage": "http://casesandberg.github.io/react-color/",
+  "homepage": "http://ritlabs.com/",
   "keywords": [
     "react",
     "color picker",
